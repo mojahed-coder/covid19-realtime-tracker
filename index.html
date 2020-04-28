@@ -16,6 +16,10 @@
     body {
         font-family: 'Baloo Thambi 2', cursive;
     }
+    td {
+        padding-top: 0px !important; 
+        padding-bottom: 0px !important;
+    }
 </style>
 
 <body>
@@ -53,6 +57,39 @@
             data-page-list="[10, 25, 50, 100, all]" data-show-footer="true">
         </table>
     </div>
+
+    <div class="container-fluid p-3 text-center my-5">
+        <div class="row">
+            <div class="col col-lg-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"> Highest Growth in Cases</h5>
+                      <table id="highestCase"  data-show-columns="false">
+                        </table>
+                    </div>
+                  </div>
+            </div>
+            <div class="col col-lg-4">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"> Highest Growth in Deaths</h5>
+                      <table id="highestDeath"  data-show-columns="false">
+                        </table>
+                    </div>
+                  </div>
+            </div>
+            <div class="col col-lg-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"> Highest Growth in Recovery</h5>
+                      <table id="highestRecovery"  data-show-columns="false">
+                        </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
@@ -66,7 +103,11 @@
         axios.get('https://api.covid19api.com/summary').then(function (response) {
             var rawData = myData(response.data.Countries);
             myTable(rawData);
-            console.log(response.data.Global.TotalConfirmed);
+            highestCaseTable(rawData.slice(0,10));
+            highestDeathsTable(rawData.slice(0,10));
+            highestRecoveryTable(rawData.slice(0,10));
+            
+
             document.querySelector("#confirmed").append(formatNumber(response.data.Global.TotalConfirmed));
             document.querySelector("#recovered").append(formatNumber(response.data.Global.TotalRecovered));
             document.querySelector("#deceased").append(formatNumber(response.data.Global.TotalDeaths));
@@ -130,6 +171,51 @@
                 data: arr
             });
             return myTable;
+        }
+
+        function highestCaseTable(arr) {
+            var highestCase = $('#highestCase').bootstrapTable({
+                locale: 'en_US',
+                columns: [
+                    [
+                    {field: 'country', title: 'Countries', rowspan: 1, align: 'left'},
+                    {title: 'New Cases', field: 'newcases',  sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
+                    {title: 'totalcases', field: 'totalcases', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
+                    ],
+                ],
+                data: arr
+            });
+            return highestCase;
+        }
+
+        function highestDeathsTable(arr) {
+            var highestDeath = $('#highestDeath').bootstrapTable({
+                locale: 'en_US',
+                columns: [
+                    [
+                    {field: 'country', title: 'Countries', rowspan: 1, align: 'left'},
+                    {title: 'New Deaths', field: 'newdeaths',  sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
+                    {title: 'Total Deaths', field: 'totaldeaths', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
+                    ],
+                ],
+                data: arr
+            });
+            return highestCase;
+        }
+
+        function highestRecoveryTable(arr) {
+            var highestRec = $('#highestRecovery').bootstrapTable({
+                locale: 'en_US',
+                columns: [
+                    [
+                    {field: 'country', title: 'Countries', rowspan: 1, align: 'left'},
+                    {title: 'New Recovery', field: 'newrecoveries',  sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
+                    {title: 'Total Recovery', field: 'totalrecoveries', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
+                    ],
+                ],
+                data: arr
+            });
+            return highestCase;
         }
 
         function countFormatter(data) {
