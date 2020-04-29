@@ -5,8 +5,17 @@ fetch('https://api.covid19api.com/summary').then((response)=>response.json())
             highestCaseTable(rawData.slice(0,10));
             highestDeathsTable(rawData.slice(0,10));
             highestRecoveryTable(rawData.slice(0,10));
-            
 
+            // var hConfirmed = rawData.sort(function(obj1, obj2){
+            //     return obj2.newcases - obj1.newcases;
+            // });
+            // console.log(hConfirmed);
+            // highestCaseTable2(hConfirmed);
+
+          // console.log(data.Countries[0].Country);
+         /* data.Countries.forEach((item)=>{
+            console.log(item.Country);
+          });*/
             document.querySelector("#confirmed").append(formatNumber(data.Global.TotalConfirmed));
             document.querySelector("#recovered").append(formatNumber(data.Global.TotalRecovered));
             document.querySelector("#deceased").append(formatNumber(data.Global.TotalDeaths));
@@ -80,8 +89,8 @@ fetch('https://api.covid19api.com/summary').then((response)=>response.json())
                 columns: [
                     [
                     {field: 'country', title: 'Countries', rowspan: 1, align: 'left'},
-                    {title: 'New Cases', field: 'newcases',  sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
-                    {title: 'totalcases', field: 'totalcases', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
+                    {title: 'New Cases', field: 'newcases',  sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
+                    {title: 'totalcases', field: 'totalcases', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
                     ],
                 ],
                 data: arr
@@ -89,14 +98,62 @@ fetch('https://api.covid19api.com/summary').then((response)=>response.json())
             return highestCase;
         }
 
+        // function highestCaseTable2(arr) {
+        //     var listGroup = document.createElement('ul');
+        //     listGroup.setAttribute('class', 'list-group-item d-flex');
+        //     listGroup.setAttribute('id', 'hconfirmed');
+        //    listGroup.textContent = 'njkjkasd';
+
+        //     let output = document.createElement('span');
+        //     output.setAttribute('class', 'badge badge-primary badge-pill');
+           
+
+        //     listGroup.setAttribute('id', 'newconfirmed');
+
+           
+
+        //     let row = table.insertRow();
+           
+        //    for (var i=0; i< arr.length; i++) {
+        //     var h = [arr[i].country, arr[i].newcases];
+            
+        //     listGroup.appendChild(output);
+        //     document.querySelector('.container').appendChild(listGroup);
+        //    console.log(arr[i].newcases);
+        //     listGroup.textContent = arr[i].country;
+        //         output
+        //     for (var j =0; j < 10; j++ ) {
+        //         let cell = row.insertCell();
+        //         let text = document.createTextNode(h[j]);
+        //         cell.appendChild(text);
+        //     }
+        
+            
+           
+               
+        //    }
+
+        //  }
+
+        function GetSortOrder(prop) {  
+            return function(a, b) {  
+                if (a.prop['NewConfirmed'] > b.prop['NewConfirmed']) {  
+                    return 1;  
+                } else if (a.prop['NewConfirmed'] < b.prop['NewConfirmed']) {  
+                    return -1;  
+                }  
+                return 0;  
+            }  
+        }  
+
         function highestDeathsTable(arr) {
             var highestDeath = $('#highestDeath').bootstrapTable({
                 locale: 'en_US',
                 columns: [
                     [
                     {field: 'country', title: 'Countries', rowspan: 1, align: 'left'},
-                    {title: 'New Deaths', field: 'newdeaths',  sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
-                    {title: 'Total Deaths', field: 'totaldeaths', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
+                    {title: 'New Deaths', field: 'newdeaths',  sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
+                    {title: 'Total Deaths', field: 'totaldeaths', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
                     ],
                 ],
                 data: arr
@@ -110,8 +167,8 @@ fetch('https://api.covid19api.com/summary').then((response)=>response.json())
                 columns: [
                     [
                     {field: 'country', title: 'Countries', rowspan: 1, align: 'left'},
-                    {title: 'New Recovery', field: 'newrecoveries',  sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
-                    {title: 'Total Recovery', field: 'totalrecoveries', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
+                    {title: 'New Recovery', field: 'newrecoveries',  sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter},
+                    {title: 'Total Recovery', field: 'totalrecoveries', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
                     ],
                 ],
                 data: arr
