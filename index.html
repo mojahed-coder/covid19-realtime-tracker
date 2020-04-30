@@ -7,9 +7,16 @@
     <link href="https://unpkg.com/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
     <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <style>
@@ -21,97 +28,209 @@
         padding-top: 0px !important;
         padding-bottom: 0px !important;
     }
+
+    ul li {
+        display: inline;
+        list-style: none;
+
+    }
 </style>
 
 <body>
-
-    <div class="container-fluid bg-light p-3 text-center">
-        <h1>World Cases</h1>
-        <div class="row text-center">
-            <div class="col-4 text-warning text-center">
-                <h5>Confirmed Cases</h5>
-                <span id="confirmed" class="badge badge-pill badge-warning p-2" style="font-size:larger;"></span>
-                <small id="newConfirmed" style="font-weight: bold;">+</small>
-
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
             </div>
-            <div class="col-4 text-success text-center">
-                <h5>Recovered</h5>
-                <span id="recovered" class="badge badge-pill badge-success p-2" style="font-size:larger;"></span>
-                <small id="newRecovered" style="font-weight: bold;">+</small>
-            </div>
-            <div class="col-4 text-danger text-center">
-                <h5>Deaths</h5>
-                <span id="deceased" class="badge badge-pill badge-danger p-2" style="font-size:larger;"></span>
-                <small id="newDeceased" style="font-weight: bold;">+</small>
-            </div>
-        </div>
-    </div>
 
-    <div class="container-fluid mt-2">
-        <div id="toolbar">
-            <h6>#COVID19 &emsp; #KeepSafe &emsp; #StayHome &emsp; #MaintainSocialDistancing &emsp;
-                #WashYourHandsFrequently&emsp; #StayInformedAndObeyHealthcareProvider </h6>
-        </div>
-        <table id="table" data-toolbar="#toolbar" data-search="true" data-show-toggle="true" data-show-columns="true"
-            data-show-columns-toggle-all="true" data-show-export="true" data-sort-name="totalcases"
-            data-sort-order="desc" data-show-pagination-switch="true" data-pagination="false"
-            data-page-list="[10, 25, 50, 100, all]" data-show-footer="true">
-        </table>
-    </div>
+            <div class="sidebar-header">
+                <h3>COVID-19 Tracker</h3>
+            </div>
 
-    <div class="container-fluid p-3 bg-light text-center my-5">
-        <div class="row">
-            <div class="col col-lg-4">
-                <div class="card text-white bg-warning mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"> Highest Growth in Cases</h5>
-                        <table id="highestCase" data-show-columns="false">
-                        </table>
+            <ul class="list-unstyled components">
+               
+                    
+                   
+                <li>
+                    <a class="active" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Tabled View</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">World Map View</a>
+                </li>
+                <li>
+                    <a href="#">Charts</a>
+                </li>
+                <li>
+                    <a href="#">News and Articles</a>
+                </li>
+                <li>
+                    <a href="#">About COVID19</a>
+                </li>
+            </ul>
+        </nav>
+
+
+
+        <div class="content">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-secondary" style="margin: 10px;">
+                <i class="fas fa-align-left"></i>
+            </button>
+            <div class="container-fluid bg-light p-3 text-center">
+                <h1>World Cases</h1>
+                <div class="row text-center">
+                    <div class="col-4 text-warning text-center">
+                        <h5>Confirmed Cases</h5>
+                        <span id="confirmed" class="badge badge-pill badge-warning p-2"
+                            style="font-size:larger;"></span>
+                        <small id="newConfirmed" style="font-weight: bold;">+</small>
+
+                    </div>
+                    <div class="col-4 text-success text-center">
+                        <h5>Recovered</h5>
+                        <ul>
+                            <li><span id="recovered" class="badge badge-pill badge-success p-2"
+                                    style="font-size:larger;"></span></li>
+                            <li><small id="newRecovered" style="font-weight: bold;">+</small></li>
+                        </ul>
+                    </div>
+                    <div class="col-4 text-danger text-center">
+                        <h5>Deaths</h5>
+                        <span id="deceased" class="badge badge-pill badge-danger p-2" style="font-size:larger;"></span>
+                        <small id="newDeceased" style="font-weight: bold;">+</small>
                     </div>
                 </div>
             </div>
-            <div class="col col-lg-4">
-                <div class="card text-white bg-danger mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"> Highest Growth in Deaths</h5>
-                        <table id="highestDeath" data-show-columns="false">
-                        </table>
+
+            <div class="container-fluid mt-2">
+                <div id="toolbar">
+                    <h6>#COVID19 &emsp; #KeepSafe &emsp; #StayHome &emsp; #MaintainSocialDistancing &emsp;
+                        #WashYourHandsFrequently&emsp; #StayInformedAndObeyHealthcareProvider </h6>
+                </div>
+                <table id="table" data-toolbar="#toolbar" data-search="true" data-show-toggle="true"
+                    data-show-columns="true" data-show-columns-toggle-all="true" data-show-export="true"
+                    data-sort-name="totalcases" data-sort-order="desc" data-show-pagination-switch="true"
+                    data-pagination="false" data-page-list="[10, 25, 50, 100, all]" data-show-footer="true">
+                </table>
+            </div>
+
+            <div class="container-fluid p-3 bg-light text-center my-5">
+                <div class="row">
+                    <div class="col col-lg-4">
+                        <div class="card text-white bg-warning mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"> Highest Growth in Cases</h5>
+                                <table id="highestCase" data-show-columns="false">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card text-white bg-danger mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"> Highest Growth in Deaths</h5>
+                                <table id="highestDeath" data-show-columns="false">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card text-white bg-success mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"> Highest Growth in Recovery</h5>
+                                <table id="highestRecovery" data-show-columns="false">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <style>
+                        .embed-container {
+                            position: relative;
+                            padding-bottom: 67%;
+                            height: 0;
+                            max-width: 100%;
+                        }
+
+                        .embed-container iframe,
+                        .embed-container object,
+                        .embed-container iframe {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        small {
+                            position: absolute;
+                            z-index: 40;
+                            bottom: 0;
+                            margin-bottom: -15px;
+                        }
+                    </style>
+                    <div class="embed-container"><iframe width="300" height="200" frameborder="0" scrolling="no"
+                            marginheight="0" marginwidth="0" title="Covid19 Map"
+                            src="//www.arcgis.com/apps/Embed/index.html?webmap=8480c9fa0f2748a49555eeee60bf50c2&extent=93.878,-1.105,145.6456,27.7168&zoom=true&previewImage=false&scale=false&search=false&searchextent=false&disable_scroll=false&theme=light"></iframe>
                     </div>
                 </div>
             </div>
-            <div class="col col-lg-4">
-                <div class="card text-white bg-success mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"> Highest Growth in Recovery</h5>
-                        <table id="highestRecovery" data-show-columns="false">
-                        </table>
-                    </div>
-                </div>
+            <div class="overlay"></div>
+
+        </div>
+       
+
+
+        <script src="main.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <!-- <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script> -->
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#dismiss, .overlay').on('click', function () {
+                    $('#sidebar').removeClass('active');
+                    $('.overlay').removeClass('active');
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').addClass('active');
+                    $('.overlay').addClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
+
+
+
+        <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js"></script>
+        <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+        <footer class="footer mt-auto py-3">
+            <div class="container text-center">
+                <span class="text-muted">Copyright &copy; 2020, 
+                    <a href="https://mojahed-coder.github.io/portfolio-mojahed.com/"> <span style="color:dodgerblue;">Mojahed Habib</span></a> --version 0.0.1</span>
             </div>
-        </div>
-        <div class="container">
-            <style>.embed-container {position: relative; padding-bottom: 67%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="300" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Covid19 Map" src="//www.arcgis.com/apps/Embed/index.html?webmap=8480c9fa0f2748a49555eeee60bf50c2&extent=93.878,-1.105,145.6456,27.7168&zoom=true&previewImage=false&scale=false&search=false&searchextent=false&disable_scroll=false&theme=light"></iframe></div>
-        </div>
+        </footer>
     </div>
-
-    <script src="main.js"></script>
-    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js"></script>
-    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-    <script
-        src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
-
-
-    <footer class="footer mt-auto py-3">
-        <div class="container text-center">
-            <span class="text-muted">Copyright &copy; 2020, <a
-                    href="https://mojahed-coder.github.io/portfolio-mojahed.com/">Mojahed Habib</a> Version 0.0.1</span>
-        </div>
-    </footer>
 </body>
 
 </html>
