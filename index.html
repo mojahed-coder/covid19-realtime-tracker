@@ -21,6 +21,30 @@
         padding-top: 0px !important;
         padding-bottom: 0px !important;
     }
+    .nav-pills .nav-link.active {
+        background-color: dodgerblue;
+        border-radius: 0;
+    }
+    .nav-pills .nav-link {
+        border-radius: 0;
+        border: 2px solid dodgerblue;
+        margin-right: 15px;
+    }
+    .nav-link,
+    .nav-link:hover {
+        font-size: 18px;
+        padding: 8px 32px;
+        transition: all ease 0.5s;
+    }
+    .nav-link:hover {
+        background-color: dodgerblue;
+        color: #fff;
+    }
+    .tab-content {
+        background-color: #fff;
+        padding: 25px;
+        border-top: 5px solid dodgerblue;
+    }
 </style>
 
 <body>
@@ -46,54 +70,118 @@
             </div>
         </div>
     </div>
-
-    <div class="container-fluid mt-2">
-        <div id="toolbar">
-            <h6 hidden>#COVID19 &emsp; #KeepSafe &emsp; #StayHome &emsp; #MaintainSocialDistancing &emsp;
-                #WashYourHandsFrequently&emsp; #StayInformedAndObeyHealthcareProvider </h6>
+    <!-- Start tabs -->
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                aria-controls="pills-home" aria-selected="true">Tabled View</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                aria-controls="pills-profile" aria-selected="false">Map View</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-chart" role="tab"
+                aria-controls="pills-contact" aria-selected="false">Charts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-news" role="tab"
+                aria-controls="pills-contact" aria-selected="false">Latests News</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-about" role="tab"
+                aria-controls="pills-contact" aria-selected="false">About Covid19</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="container-fluid mt-2">
+                <div id="toolbar">
+                    <h6 hidden>#COVID19 &emsp; #KeepSafe &emsp; #StayHome &emsp; #MaintainSocialDistancing &emsp;
+                        #WashYourHandsFrequently&emsp; #StayInformedAndObeyHealthcareProvider </h6>
+                </div>
+                <h5 id="errormessage"></h5>
+                <table id="table" data-toolbar="#toolbar" data-search="true" data-show-toggle="true" data-show-columns="true"
+                    data-show-columns-toggle-all="true" data-show-export="true" data-sort-name="totalcases"
+                    data-sort-name="totaldeaths" data-sort-name="totalrecoveries" data-sort-order="desc"
+                    data-show-pagination-switch="true" data-pagination="false" data-page-list="[10, 25, 50, 100, all]"
+                    data-show-footer="false">
+                </table>
+            </div>
+            <div class="container-fluid p-3 bg-light text-center my-5">
+                <div class="row">
+                    <div class="col col-lg-4">
+                        <div class="card text-white bg-warning mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"> Highest Growth in Cases</h5>
+                                <table id="highestCase" data-show-columns="false">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card text-white bg-danger mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"> Highest Growth in Deaths</h5>
+                                <table id="highestDeath" data-show-columns="false">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card text-white bg-success mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"> Highest Growth in Recovery</h5>
+                                <table id="highestRecovery" data-show-columns="false">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
         </div>
-        <h5 id="errormessage"></h5>
-        <table id="table" data-toolbar="#toolbar" data-search="true" data-show-toggle="true" data-show-columns="true"
-            data-show-columns-toggle-all="true" data-show-export="true" data-sort-name="totalcases" data-sort-name="totaldeaths" data-sort-name="totalrecoveries"
-            data-sort-order="desc" data-show-pagination-switch="true" data-pagination="false"
-            data-page-list="[10, 25, 50, 100, all]" data-show-footer="false">
-        </table>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="container">
+                <style>
+                    .embed-container {
+                        position: relative;
+                        padding-bottom: 67%;
+                        height: 0;
+                        max-width: 100%;
+                    }
+    
+                    .embed-container iframe,
+                    .embed-container object,
+                    .embed-container iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+    
+                    small {
+                        position: absolute;
+                        z-index: 40;
+                        bottom: 0;
+                        margin-bottom: -15px;
+                    }
+                </style>
+                <div class="embed-container"><iframe width="300" height="200" frameborder="0" scrolling="no"
+                        marginheight="0" marginwidth="0" title="Covid19 Map"
+                        src="//www.arcgis.com/apps/Embed/index.html?webmap=8480c9fa0f2748a49555eeee60bf50c2&extent=93.878,-1.105,145.6456,27.7168&zoom=true&previewImage=false&scale=false&search=false&searchextent=false&disable_scroll=false&theme=light"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="pills-chart" role="tabpanel" aria-labelledby="pills-chart">charts to be impelemented...</div>
+        <div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news">news to be impelemented...</div>
+        <div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about">about covid19 to be impelemented...</div>
     </div>
+    <!-- End tabs -->
+   
 
-    <div class="container-fluid p-3 bg-light text-center my-5">
-        <div class="row">
-            <div class="col col-lg-4">
-                <div class="card text-white bg-warning mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"> Highest Growth in Cases</h5>
-                        <table id="highestCase" data-show-columns="false">
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-lg-4">
-                <div class="card text-white bg-danger mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"> Highest Growth in Deaths</h5>
-                        <table id="highestDeath" data-show-columns="false">
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-lg-4">
-                <div class="card text-white bg-success mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"> Highest Growth in Recovery</h5>
-                        <table id="highestRecovery" data-show-columns="false">
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <style>.embed-container {position: relative; padding-bottom: 67%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="300" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Covid19 Map" src="//www.arcgis.com/apps/Embed/index.html?webmap=8480c9fa0f2748a49555eeee60bf50c2&extent=93.878,-1.105,145.6456,27.7168&zoom=true&previewImage=false&scale=false&search=false&searchextent=false&disable_scroll=false&theme=light"></iframe></div>
-        </div>
-    </div>
+    
 
     <script src="main.js"></script>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
@@ -103,7 +191,8 @@
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js"></script>
     <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script
+        src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
 
 
 
