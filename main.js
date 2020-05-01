@@ -70,11 +70,11 @@ fetch('https://api.covid19api.com/summary').then((response)=>response.json())
                         { field: 'lastupdate', title: 'Date Last Update', rowspan: 2, align: 'center', valign: 'middle' }
                     ],
                     [
-                        { field: 'newcases', title: 'New Cases', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
+                        { field: 'newcases', title: 'New Cases', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
                         { field: 'totalcases', title: 'Total Cases', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
-                        { field: 'newdeaths', title: 'New Deaths', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
+                        { field: 'newdeaths', title: 'New Deaths', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
                         { field: 'totaldeaths', title: 'Total Deaths', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
-                        { field: 'newrecoveries', title: 'New Recovered', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
+                        { field: 'newrecoveries', title: 'New Recovered', sortable: false, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter },
                         { field: 'totalrecoveries', title: 'Total Recovered', sortable: true, align: 'right', formatter: numberFormatter, footerFormatter: totalFormatter }
                     ]
                 ],
