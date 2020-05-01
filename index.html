@@ -26,7 +26,7 @@
 <body>
 
     <div class="container-fluid bg-light p-3 text-center">
-        <h1>World Cases</h1>
+        <h1>World-wide Cases</h1>
         <div class="row text-center">
             <div class="col-4 text-warning text-center">
                 <h5>Confirmed Cases</h5>
@@ -49,13 +49,14 @@
 
     <div class="container-fluid mt-2">
         <div id="toolbar">
-            <h6>#COVID19 &emsp; #KeepSafe &emsp; #StayHome &emsp; #MaintainSocialDistancing &emsp;
+            <h6 hidden>#COVID19 &emsp; #KeepSafe &emsp; #StayHome &emsp; #MaintainSocialDistancing &emsp;
                 #WashYourHandsFrequently&emsp; #StayInformedAndObeyHealthcareProvider </h6>
         </div>
+        <h5 id="errormessage"></h5>
         <table id="table" data-toolbar="#toolbar" data-search="true" data-show-toggle="true" data-show-columns="true"
-            data-show-columns-toggle-all="true" data-show-export="true" data-sort-name="totalcases"
+            data-show-columns-toggle-all="true" data-show-export="true" data-sort-name="totalcases" data-sort-name="totaldeaths" data-sort-name="totalrecoveries"
             data-sort-order="desc" data-show-pagination-switch="true" data-pagination="false"
-            data-page-list="[10, 25, 50, 100, all]" data-show-footer="true">
+            data-page-list="[10, 25, 50, 100, all]" data-show-footer="false">
         </table>
     </div>
 
@@ -102,8 +103,8 @@
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js"></script>
     <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-    <script
-        src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
 
 
     <footer class="footer mt-auto py-3">

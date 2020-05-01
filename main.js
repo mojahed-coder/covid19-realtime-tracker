@@ -34,11 +34,11 @@ fetch('https://api.covid19api.com/summary').then((response)=>response.json())
             data.forEach(function (item) {
                 list.push({
                     country: '<img src="flags/' + item.CountryCode.toLowerCase() + '.svg" width="36"> ' + item.Country, //github.com/rinvex/countries
-                    newcases: item.NewConfirmed,
+                    newcases: '<span style="color: orange; font-weight: bold">+</span>'+item.NewConfirmed,
                     totalcases: item.TotalConfirmed,
-                    newdeaths: item.NewDeaths,
+                    newdeaths: '<span style="color: red; font-weight: bold">+</span>'+item.NewDeaths,
                     totaldeaths: item.TotalDeaths,
-                    newrecoveries: item.NewRecovered,
+                    newrecoveries: '<span style="color: green; font-weight: bold">+</span>'+item.NewRecovered,
                     totalrecoveries: item.TotalRecovered,
                     //lastupdate: new Date(item.Date).getDate()+'/'+new Date(item.Date).getMonth()+'/'+new Date(item.Date).getFullYear() //.toLocaleString()
                     lastupdate: formatDate(new Date(item.Date))
