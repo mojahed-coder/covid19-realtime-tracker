@@ -340,9 +340,9 @@
             document.querySelector("#confirmed").append(formatNumber(formatNumber(tcases)));
             document.querySelector("#newConfirmed").append(formatNumber(ncases));
 
-            document.querySelector("#recovered").append(formatNumber(tdeaths));
+            document.querySelector("#recovered").append(formatNumber(trecoveries));
 
-            document.querySelector("#deceased").append(formatNumber(trecoveries));
+            document.querySelector("#deceased").append(formatNumber(tdeaths));
             document.querySelector("#newDeceased").append(formatNumber(ndeaths));
 
         }).catch(function (error) {
@@ -415,9 +415,10 @@
             });
             return myDataTable;
         }
-    </script>
 
-    <script>
+
+        // chart
+
         $('#country').html('<option disabled selected>-- Select country --</option>');
         axios.get('https://api.covid19api.com/countries').then(function (res) {
             res.data.forEach(function (row) {
@@ -476,6 +477,7 @@
             return myBasicChart;
         }
     </script>
+
 
     <!-- <script>
          axios.get('https://api.thevirustracker.com/free-api?countryTotals=ALL').then(function (response) {
