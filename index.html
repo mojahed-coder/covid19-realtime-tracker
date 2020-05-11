@@ -10,6 +10,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css" rel="stylesheet">
 </head>
 
 <style>
@@ -22,71 +23,56 @@
         padding-bottom: 0px !important;
         padding-left: 0px !important;
     }
+
     .th-inner {
         padding: 0px;
     }
+
     .nav-pills .nav-link.active {
-        background-color: dodgerblue;
-        border-radius: 0;
+        /* background-color: dodgerblue; */
+        background-image: linear-gradient(to right, #093028 0%, #237A57 51%, #093028 100%);
+        border-radius: 20px;
     }
+
     .nav-pills .nav-link {
-        border-radius: 0;
-        border: 2px solid dodgerblue;
+        border-radius: 20px;
+        border: linear-gradient(to right, #093028 0%, #237A57 51%, #093028 100%);
+        /* border: 2px solid dodgerblue; */
+        color: black;
         margin-right: 15px;
     }
-    .nav-link,
+
+    .nav-pills,
     .nav-link:hover {
         font-size: 18px;
         padding: 8px 32px;
+        background-position: right center;
         transition: all ease 0.5s;
     }
+
     .nav-link:hover {
-        background-color: dodgerblue;
+        /* background-color: dodgerblue; */
+        background-image: linear-gradient(to right, #093028 0%, #237A57 51%, #093028 100%);
         color: #fff;
     }
+
     .tab-content {
         background-color: #fff;
         padding: 25px;
-        border-top: 5px solid dodgerblue;
     }
 </style>
 
 <body>
 
-    <div class="container-fluid bg-light p-3 text-center">
-        <h1>World-wide Cases</h1>
-        <div class="row text-center">
-            <div class="col-4 text-warning text-center">
-                <h5>Confirmed Cases</h5>
-                <span id="confirmed" class="badge badge-pill badge-warning p-2" style="font-size:larger;"></span>
-                <small id="newConfirmed" style="font-weight: bold; position: relative;">+</small>
+    <div class="container-fluid p-3 text-center">
+        <h1>Corona Virus Updates</h1>
 
-            </div>
-            <div class="col-4 text-success text-center">
-                <h5>Recovered</h5>
-                <span id="recovered" class="badge badge-pill badge-success p-2" style="font-size:larger;"></span>
-                <small id="newRecovered" style="font-weight: bold; position: relative;">+</small>
-            </div>
-            <div class="col-4 text-danger text-center">
-                <h5>Deaths</h5>
-                <span id="deceased" class="badge badge-pill badge-danger p-2" style="font-size:larger;"></span>
-                <small id="newDeceased" style="font-weight: bold; position: relative;">+</small>
-            </div>
-        </div>
     </div>
     <!-- Start tabs -->
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin-left: 5px; margin-top: 17px;">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin-left: 30px; margin-top: 17px;">
         <li class="nav-item">
             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                aria-controls="pills-home" aria-selected="true">Tabled View</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                aria-controls="pills-profile" aria-selected="false">Interactive Map</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-chart" role="tab"
-                aria-controls="pills-contact" aria-selected="false">Charts</a>
+                aria-controls="pills-home" aria-selected="true">Overview</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-news" role="tab"
@@ -97,10 +83,60 @@
                 aria-controls="pills-contact" aria-selected="false">About Covid19</a>
         </li>
     </ul>
-    <div class="tab-content" id="pills-tabContent" style="padding-top: 0px !important;">
+    <div class="tab-content bg-light" id="pills-tabContent" style="padding-top: 0px !important;">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="container-fluid">
-                <div id="toolbar">
+                <div class="col col-lg-12">
+                    <div class="row container text-center justify-content-center">
+                        <!-- <div class="col-4 text-warning text-center">
+                            <h5>Confirmed Cases</h5>
+                            <span id="confirmed" class="badge badge-pill badge-warning p-2"
+                                style="font-size:larger;"></span>
+                            <small id="newConfirmed" style="font-weight: bold; position: relative;">+</small>
+    
+                        </div>
+                        <div class="col-4 text-success text-center">
+                            <h5>Recovered</h5>
+                            <span id="recovered" class="badge badge-pill badge-success p-2"
+                                style="font-size:larger;"></span>
+                            <small id="newRecovered" style="font-weight: bold; position: relative;">+</small>
+                        </div>
+                        <div class="col-4 text-danger text-center">
+                            <h5>Deaths</h5>
+                            <span id="deceased" class="badge badge-pill badge-danger p-2" style="font-size:larger;"></span>
+                            <small id="newDeceased" style="font-weight: bold; position: relative;">+</small>
+                        </div> -->
+
+                        <div class="col col-lg-4">
+                            <div class="card text-white bg-warning mb-3 mt-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Cases</h5>
+                                    <p class="card-text"> <span id="confirmed" style="font-size: 35px;"></span> <small
+                                            id="newConfirmed" style="position: relative;">+</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-lg-4">
+                            <div class="card text-white bg-danger mb-3 mt-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Deaths</h5>
+                                    <p class="card-text"><span id="deceased" style="font-size: 35px;"></span><small
+                                            id="newDeceased" style="position: relative;">+</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-lg-4">
+                            <div class="card text-white bg-success mb-3 mt-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Recoveries</h5>
+                                    <p class="card-text"><span id="recovered" style="font-size: 35px;"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div id="toolbar">
                     <h6 hidden>#COVID19 &emsp; #KeepSafe &emsp; #StayHome &emsp; #MaintainSocialDistancing &emsp;
                         #WashYourHandsFrequently&emsp; #StayInformedAndObeyHealthcareProvider </h6>
                 </div>
@@ -110,9 +146,87 @@
                     data-sort-name="totaldeaths" data-sort-name="totalrecoveries" data-sort-order="desc"
                     data-show-pagination-switch="true" data-pagination="false" data-page-list="[10, 25, 50, 100, all]"
                     data-show-footer="false">
-                </table>
+                </table> -->
+
+                <div class="col col-lg-12">
+                    <div class="row m-2">
+                        <div class="col col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="datatable" class="table table-striped table-bordered"
+                                        style="width: 100%;"></table>
+                                    <!-- <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm"></span>
+                                        </div>
+                                        <input id="searchInput" type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm" placeholder="search country...">
+                                    </div>
+                                    <table id="myTable" class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Countries</th>
+                                                <th scope="col">Cases</th>
+                                                <th scope="col">Recoveries</th>
+                                                <th scope="col">Deaths</th>
+                                            </tr>
+                                        </thead>
+
+                                    </table> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col col-lg-6">
+                            <div class="card mb-4" style="height: 300px;">
+                                <div class="card-body">
+                                    <style>
+                                        .embed-container {
+                                            position: relative;
+                                            padding-bottom: 67%;
+                                            height: 0;
+                                            max-width: 100%;
+                                        }
+
+                                        .embed-container iframe,
+                                        .embed-container object,
+                                        .embed-container iframe {
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            width: 100%;
+                                            height: 100%;
+                                        }
+
+                                        small {
+                                            position: absolute;
+                                            z-index: 40;
+                                            bottom: 0;
+                                            margin-bottom: -15px;
+                                        }
+                                    </style>
+                                    <div class="embed-container"><iframe width="300" height="100" frameborder="0"
+                                            scrolling="no" marginheight="0" marginwidth="0" title="Covid19 Map"
+                                            src="//www.arcgis.com/apps/Embed/index.html?webmap=8480c9fa0f2748a49555eeee60bf50c2&extent=-108.947,24.1865,-57.1794,48.0338&zoom=true&previewImage=false&scale=false&disable_scroll=false&theme=light"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="height: auto;">
+                                <div class="card-body">
+                                    <div class="col-4 mr-auto form-group">
+                                        <select id="country" class="form-control"></select>
+                                    </div>
+
+                                    <canvas id="myChart" style="width:100%; height:200px;"></canvas>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="container-fluid p-3 bg-light text-center my-5">
+            <!-- <div class="container-fluid p-3 bg-light text-center my-5">
                 <div class="row">
                     <div class="col col-lg-4">
                         <div class="card text-white bg-warning mb-3">
@@ -143,47 +257,377 @@
                     </div>
                 </div>
                
-            </div>
+            </div>-->
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>Note:</strong> If you cannot see red dots in the map(i.e countries affected by the pandemic), then try to open this website in another browser.<br> Thank you!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            <style>.embed-container {position: relative; padding-bottom: 39%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="900" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Covid19 Map" src="//www.arcgis.com/apps/Embed/index.html?webmap=8480c9fa0f2748a49555eeee60bf50c2&extent=-108.947,24.1865,-57.1794,48.0338&zoom=true&previewImage=false&scale=false&disable_scroll=false&theme=light"></iframe></div>
-            
-        </div>
-        <div class="tab-pane fade" id="pills-chart" role="tabpanel" aria-labelledby="pills-chart">charts to be impelemented...</div>
-        <div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news">news to be impelemented...</div>
-        <div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about">about covid19 to be impelemented...</div>
+
+        <div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news">news to be
+            impelemented...</div>
+        <div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about">about covid19 to
+            be impelemented...</div>
     </div>
     <!-- End tabs -->
-   
 
-    
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted">Copyright &copy; 2020, <a
+                    href="https://mojahed-coder.github.io/portfolio-mojahed.com/">Mojahed Habib</a> --version 0.0.1
+                <b>Source:</b> This report updates automatically by the data provided by <a
+                    href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins University Center for Systems
+                    Science and Engineering (JHU CSSE)</a> </span>
+        </div>
+    </footer>
 
-    <script src="main.js"></script>
+
+    <!-- <script src="main.js"></script> -->
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js"></script>
-    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <!--<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script> -->
     <script
         src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
-    <footer class="footer mt-auto py-3">
-        <div class="container text-center">
-            <span class="text-muted">Copyright &copy; 2020, <a
-                    href="https://mojahed-coder.github.io/portfolio-mojahed.com/">Mojahed Habib</a> --version 0.0.1
-                     <b>Source:</b> This report updates automatically by the data provided by <a href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>  </span> 
-        </div>
-    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-mousewheel@3.1.13/jquery.mousewheel.min.js"></script>
+    <!-- github.com/neveldo/jQuery-Mapael -->
+    <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="asset/mapael/jquery.mapael.js"></script>
+    <script src="asset/mapael/maps/world_countries_miller.min.js"></script>
+    <script src="dataset.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script>
+    <!-- moment-with-locales.min.js -->
+    <!-- github.com/chartjs/Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> <!-- Chart.bundle.min.js -->
+
+
+    <script>
+
+        axios.get('https://api.thevirustracker.com/free-api?countryTotals=ALL').then(function (response) {
+            var rawData = arrData(response.data.countryitems[0]);
+            var aData = arrData1(response.data.countryitems[0]);
+            //console.log(aData);
+            myTable(rawData);
+
+            var tcases = 0;
+            var tdeaths = 0;
+            var trecoveries = 0;
+
+            var ncases = 0, ndeaths = 0;
+            for (var i = 0; i < aData.length; i++) {
+                tcases += aData[i][1];
+                tdeaths += aData[i][3];
+                trecoveries += aData[i][5];
+
+                ncases += aData[i][2];
+                ndeaths += aData[i][4];
+
+            }
+            console.log('total cases ' + formatNumber(tcases));
+            console.log('total deaths ' + tdeaths);
+            console.log('total recoveries ' + trecoveries);
+
+            document.querySelector("#confirmed").append(formatNumber(formatNumber(tcases)));
+            document.querySelector("#newConfirmed").append(formatNumber(ncases));
+
+            document.querySelector("#recovered").append(formatNumber(tdeaths));
+
+            document.querySelector("#deceased").append(formatNumber(trecoveries));
+            document.querySelector("#newDeceased").append(formatNumber(ndeaths));
+
+        }).catch(function (error) {
+            console.log(error);
+        })
+
+        function arrData(objData) {
+            var arrayData = Object.keys(objData).map(function (key) {
+                return objData[key]
+            });
+            return myData(arrayData);
+        }
+
+        function arrData1(objData) {
+            var arrayData = Object.keys(objData).map(function (key) {
+                return objData[key]
+            });
+            return actualData(arrayData);
+        }
+
+        function myData(data) {
+            var list = [];
+            data.forEach(function (item) {
+                list.push([
+                    '<img src="flags/' + item.code + '.svg" width="36"> ' + item.title,
+                    item.total_cases + " " + '<i class="fas fa-long-arrow-alt-up" style="color:orange"></i>' + item.total_new_cases_today,
+                    item.total_deaths + " " + '<i class="fas fa-long-arrow-alt-up" style="color:red"></i>' + item.total_new_deaths_today,
+                    item.total_recovered,
+                ]);
+            });
+
+            return list.slice(0, 182);
+        }
+
+
+        function actualData(data) {
+            var list = [];
+            //var s = 0;
+            data.forEach(function (item) {
+                list.push([
+                    item.title,
+                    item.total_cases,
+                    item.total_new_cases_today,
+                    item.total_deaths,
+                    item.total_new_deaths_today,
+                    item.total_recovered
+                ]);
+                //s += parseInt(item.total_cases);
+            });
+            // console.log('total cases: '+s);
+            return list.slice(0, 182);
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+            //return num.toLocaleString('en-US');
+        }
+
+        function myTable(dataSet) {
+            var myDataTable = $('#datatable').DataTable({
+                data: dataSet,
+                locale: 'en_US',
+                columns: [
+                    { title: "Countries" },
+                    { title: "Cases" },
+                    { title: "Deaths" },
+                    { title: "Recoveries" },
+                ],
+                order: [[1, "desc"]]
+            });
+            return myDataTable;
+        }
+    </script>
+
+    <script>
+        $('#country').html('<option disabled selected>-- Select country --</option>');
+        axios.get('https://api.covid19api.com/countries').then(function (res) {
+            res.data.forEach(function (row) {
+                $('#country').append('<option value="' + row.ISO2 + '">' + row.Country + '</option>');
+            });
+        });
+
+        var store = localStorage;
+        var getStore = store.getItem('myCountryCode') ? store.getItem('myCountryCode') : 'IT';
+
+        var mychart = myChart();
+        getCountryData(getStore, mychart);
+
+        $('#country').on('change', function () {
+            store.setItem('myCountryCode', $(this).val());
+            window.location.reload();
+        });
+
+        function getCountryData(country, chart) {
+            axios.get('https://api.thevirustracker.com/free-api?countryTotal=' + country).then(function (response) {
+                chart.data.datasets[0].data = formatData(response.data.countrydata);
+                chart.update();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function formatData(data) {
+            var list = [];
+            data.forEach(function (item) {
+                list.push(item.total_cases);
+                list.push(item.total_deaths);
+                list.push(item.total_recovered);
+            });
+            return list;
+        }
+
+        function myChart() {
+            var myBasicChart = new Chart('myChart', {
+                type: 'pie',
+                data: {
+                    labels: ['Confirmed Cases', 'Death Toll', 'Total Recovered'],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: [
+                            '#ff9f40',
+                            '#4bc0c0',
+                            '#ff6384'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+            return myBasicChart;
+        }
+    </script>
+
+    <!-- <script>
+         axios.get('https://api.thevirustracker.com/free-api?countryTotals=ALL').then(function (response) {
+            var rawData = arrData(response.data.countryitems[0]);
+            
+            buildTable(rawData);
+            console.log(rawData);
+            $('#searchInput').on('keyup', function() {
+            var value = $(this).val();
+            console.log('value is '+value);
+
+            var searchedData = searchData(value, response.data.countryitems[0]);
+            var d = searchTable(value, rawData);
+           // buildTable(d);
+          
+        });
+        }).catch(function (error) {
+            console.log(error);
+        })
+        
+        function arrData(objData) {
+            var arrayData = Object.keys(objData).map(function(key) {
+                return objData[key]
+            });
+            return myData(arrayData);
+        }
+
+        function searchData(value, objData) {
+            var arrayData = Object.keys(objData).map(function(key) {
+                return objData[key]
+            });
+            return searchTable(value,arrayData);
+        }
+        
+        function myData(data) {
+            var list = [];
+            data.forEach(function(item) {
+                
+                 country = item.title;
+                console.log('country this '+ country);
+                list.push([
+                    item.title,
+                    item.total_cases,
+                    item.total_deaths,
+                    item.total_recovered
+                ]);
+            });
+            //console.log(list.slice(0, 182));
+            return list.slice(0, 182);
+        }
+
+        function buildTable(data) {
+            var table = document.getElementById('myTable');
+            var row = `<tbody>`;
+            for (var i = 0; i <data.length; i++) {
+                row += `<tr>`;
+               for (var j =0; j < data[i].length; j++) {
+                   row += `<td>${data[i][j]}</td>`;
+               }
+               row += `<tr>`;
+            }
+            row += `</tbody>`;
+            table.innerHTML += row;
+        }
+
+
+            function searchTable(value, data) {
+                
+                var filteredData = [];
+
+                for(var i=1; i<= data.length; i++){
+                    value = value.toString().toLowerCase();
+                    console.log('hey '+data[i].title);
+                    var country = data[i].title;
+                    if (country.includes(value)) {
+                        filteredData.push([
+                        data[i].title,
+                        data[i].total_cases,
+                        data[i].total_deaths,
+                        data[i].total_recovered
+                        ]);
+                    
+                    }
+                   
+                   
+                }
+                return filteredData;
+            }
+
+                // data.forEach(function(item) {
+                //     value = value.toString().toLowerCase();
+                //     country = item.title;
+                //    // console.log('country this '+ country);
+                //    while (item !== data[data.length-1]){
+                //     if (country.includes(value)) {
+                //         filteredData.push([
+                //         item.title,
+                //         item.total_cases,
+                //         item.total_deaths,
+                //         item.total_recovered
+                //         ]);
+                    
+                //     }
+                //    }
+                    
+                // });
+                // return filteredData;
+                // console.log('the data '+filteredData);
+            
+            // }
+           
+
+            $(".cases").mapael({
+                map: {
+                    name: "world_countries_miller",
+                    zoom: {
+                        enabled: true,
+                        maxLevel: 10
+                    },
+                    defaultArea: {
+                        attrs: {
+                            stroke: "#fff",
+                            "stroke-width": 1
+                        }
+                    }
+                },
+                legend: {
+                    area: {
+                        mode: "horizontal",
+                        labelAttrs: {
+                            "font-size": 12
+                        },
+                        marginLeft: 5,
+                        marginLeftLabel: 5,
+                        title: "Territory of total recoveries as of 1 April 2020",
+                        slices: recoveryLegendAreaColors
+                    },
+                    plot: {
+                        mode: "horizontal",
+                        labelAttrs: {
+                            "font-size": 12
+                        },
+                        marginLeft: 5,
+                        marginLeftLabel: 5,
+                        title: "Region of total recoveries as of 1 April 2020",
+                        slices: recoveryLegendPlotColors
+                    }
+                },
+                plots: recoveryCityPlots,
+                areas: recoveryCountryAreas
+            });
+        </script> -->
 </body>
 
 </html>
