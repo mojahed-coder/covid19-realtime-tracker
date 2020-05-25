@@ -107,7 +107,7 @@
                             <small id="newDeceased" style="font-weight: bold; position: relative;">+</small>
                         </div> -->
 
-                        <div class="col col-lg-4">
+                        <div class="col col-lg-4 col-sm-12">
                             <div class="card text-white bg-warning mb-3 mt-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Total Cases</h5>
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-lg-4">
+                        <div class="col col-lg-4 col-sm-12">
                             <div class="card text-white bg-danger mb-3 mt-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Total Deaths</h5>
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-lg-4">
+                        <div class="col col-lg-4 col-sm-12">
                             <div class="card text-white bg-success mb-3 mt-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Total Recoveries</h5>
@@ -337,7 +337,7 @@
             console.log('total deaths ' + tdeaths);
             console.log('total recoveries ' + trecoveries);
 
-            document.querySelector("#confirmed").append(formatNumber(formatNumber(tcases)));
+            document.querySelector("#confirmed").append(formatNumber(tcases));
             document.querySelector("#newConfirmed").append(formatNumber(ncases));
 
             document.querySelector("#recovered").append(formatNumber(trecoveries));
